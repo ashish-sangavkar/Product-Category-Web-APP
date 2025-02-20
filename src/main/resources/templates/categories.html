@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Product Category App</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-light" href="#">Product Category App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link text-light" th:href="@{/api/home}">Home</a>
+      <a class="nav-item nav-link text-light" th:href="@{/findAllProducts}">Products</a>
+      <a class="nav-item nav-link text-light" th:href="@{/findAllCategories}">Categories</a>
+    </div>
+  </div>
+</nav>
+<br>
+	<div class="container">
+		<div class="row">
+				<h1>List of Categories</h1>
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+			<a th:href="@{/addNewCategoryPage}" type="button" class="btn btn-sm btn-primary mb-2">Add New Category</a>
+			</div>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Category Id</th>
+					<th>Category Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="category : ${categories}">
+					<td th:text="${category.categoryId}"></td>
+					<td th:text="${category.categoryName}"></td>
+					<td>
+						<a th:href="@{/updateCategory/{categoryId}(categoryId=${category.categoryId})}" type="button" class="btn btn-primary btn-sm">Update</a>	
+						<a th:href="@{/deleteCategoryById/{categoryId}(categoryId=${category.categoryId})}" type="button" class="btn btn-danger btn-sm">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

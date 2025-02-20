@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-light" href="#">Product Category App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link text-light" th:href="@{/api/home}">Home</a>
+      <a class="nav-item nav-link text-light" th:href="@{/findAllProducts}">Products</a>
+      <a class="nav-item nav-link text-light" th:href="@{/findAllCategories}">Categories</a>
+    </div>
+  </div>
+</nav>
+<br><br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6 container justify-align-center card">
+				<h1 class="text-center">Update Category</h1>
+				<div class="card-body">
+					<form th:action="@{/updateOldCategory/{categoryId}(categoryId=${category.categoryId})}" th:object="${category}" method="POST">
+						<div class="form-group">
+							<label>Category Name</label>
+							<input 
+								type="text" 
+								class="form-control"
+								required
+								placeholder="Enter Category Name"
+								name="category-name"
+								th:field="*{categoryName}"
+								 />
+						</div>
+						
+						<div>
+							<button type="submit" class="btn btn-primary">Update Category</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
